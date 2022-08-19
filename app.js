@@ -1,27 +1,27 @@
-const express = require("express");
-const multer = require("multer");
-const Unzipper = require("decompress-zip");
+const express = require('express');
+const multer = require('multer');
+const Unzipper = require('decompress-zip');
 const decompress = require('decompress');
-const path = require("path");
-const fs = require("fs");
+const path = require('path');
+const fs = require('fs');
 
 const app = express();
-const port = 3000;
+const port = 3003;
 
-const unzipPath = "unzipped/";
+const unzipPath = 'unzipped/';
 
 const upload = multer({
-  dest: "uploads/" // this saves your file into a directory called "uploads"
+  dest: 'uploads/', // this saves your file into a directory called "uploads"
 });
 
-app.set("view engine", "pug");
+app.set('view engine', 'pug');
 
-app.get("/", function(req, res) {
-  res.render("index");
+app.get('/', function (req, res) {
+  res.render('index');
 });
 
 // It's very crucial that the file name matches the name attribute in your html
-app.post("/", upload.single("file-to-upload"), (req, res, next) => {
+app.post('/', upload.single('file-to-upload'), (req, res, next) => {
   if (req.file) {
     console.log(`Uploading file "${req.file.originalname}"...`);
 
@@ -78,9 +78,8 @@ app.post("/", upload.single("file-to-upload"), (req, res, next) => {
     */
 
     // unzipper.extract({ path: unzipPath });
-
   } else {
-    console.log("No File Uploaded");
+    console.log('No File Uploaded');
     // var filename = "FILE NOT UPLOADED";
     // var uploadStatus = "File Upload Failed";
   }
